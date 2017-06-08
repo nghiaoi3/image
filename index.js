@@ -27,7 +27,7 @@ app.get('/lastest', function(req, res) {
 
 
 app.get('/search/:q', function(req, res) {
-    var query = req.params.query;
+    var query = req.params.q;
     // a query is a model of Mongoose ~ a document of MongoDb
     var savedate = new Model({
         'query':query,
