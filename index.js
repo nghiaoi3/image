@@ -18,11 +18,18 @@ var Model = mongoose.model('Model',historySchema)
 mongoose.connect('mongodb://nghiaoi11:9732298@ds115752.mlab.com:15752/image')
 
 app.get('/', function(req, res) {
-    res.send('Hello from NGHIA, what images will you search? . <br> <br> Example: <a href= https://shielded-sea-69229.herokuapp.com/new/http://vnexpress.net> https://shielded-sea-69229.herokuapp.com/new/http://vnexpress.net </a> <br> <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
+    res.send('Hello from NGHIA, what images will you search? . <br> <br> Example: Search Images about / of/ regarading <a href= https://radiant-chamber-77452.herokuapp.com/search/vietnam> Vietnam </a> <br> <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
 });
 
 app.get('/lastest', function(req, res) {
-    res.send('Hello from NGHIA, please provide your URL (http://yourdomain) needed a short code. <br> <br> Example: <a href= https://shielded-sea-69229.herokuapp.com/new/http://vnexpress.net> https://shielded-sea-69229.herokuapp.com/new/http://vnexpress.net </a> <br> <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
+    
+    Model.find()
+    .select({_id:0, query:1, time:1})
+    .sort({time:1})
+    .limit(10)
+    .then(results=>{
+        res.json(results);
+    });
 });
 
 
