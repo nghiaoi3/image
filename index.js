@@ -31,8 +31,7 @@ app.get('/search/:q', function(req, res) {
     // a query is a model of Mongoose ~ a document of MongoDb
     var savedate = new Model({
         'query':query,
-        'time':Math.floor(Date.now()/1000)
-        
+
     }).save(function(err,result) {
         if (err) throw err;
         if (result) {
