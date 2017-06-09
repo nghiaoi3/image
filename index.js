@@ -20,15 +20,16 @@ mongoose.connect('mongodb://nghiaoi11:9732298@ds115752.mlab.com:15752/image')
 
 
 
-// function gets image data from Imgur
-function getImage (search){
+// function returns a Promise with image data from Imgur 
+function Img (search) {
+var PromiseImg = new Promise ( (resolve,reject) => {
 var options = {
       url: `https://api.imgur.com/3/gallery/search/?q=${search}`,
       headers: { Authorization: '5eda980515f46da' },
       json: true,
     };
     
-    
+   // function callback is an argument of request 
 function callback(err, response, body) {
   if (!err && response.statusCode == 200) {
     body = body.data.filter(image => {
@@ -46,8 +47,8 @@ function callback(err, response, body) {
 }
 request(options,callback);
 }
-
-
+);
+}
 
 app.get('/', function(req, res) {
     res.send('Hello from NGHIA, what images will you search? . <br> <br> Example: Search Images About / Of/ Regarding <a href= https://radiant-chamber-77452.herokuapp.com/search/vietnam> Vietnam </a> <br> <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
@@ -57,7 +58,7 @@ app.get('/', function(req, res) {
 app.get('/search/:q', function(req, res) {
     var query = req.params.q;
     
-        getImage(query).then(ans=>{
+        Img(query).then(ans=>{
             
              // a queryinfo is a model of Mongoose ~ a document of MongoDb
     var queryinfo = new Model({
