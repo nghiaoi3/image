@@ -57,7 +57,8 @@ function callback(err, response, body) {
     });
           resolve(body)
 
-  }
+  }  else
+            reject();
 
 }
 
@@ -81,7 +82,9 @@ app.get('/search/:q', function(req, res) {
         'query':query,
     }).save();
     
-            res.json(ans)});
+            res.json(ans)}).catch(function () {
+     console.log("Promise Rejected");
+});;
 });
 
 
