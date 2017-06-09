@@ -41,7 +41,8 @@ var options = {
    // function callback is an argument of request 
 function callback(err, response, body) {
     
-        console.log('url '+options.url);
+                    console.log(options.url);
+
 
     
     if (err) {console.err()}
@@ -78,7 +79,7 @@ app.get('/search/:q', function(req, res) {
     var query = req.params.q;
     console.log('type of '+ Img(query))
         Img('dog').then(ans=>{
-            
+
              // a queryinfo is a model of Mongoose ~ a document of MongoDb
     var queryinfo = new Model({
         'query':query,
