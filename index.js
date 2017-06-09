@@ -24,7 +24,7 @@ mongoose.connect('mongodb://nghiaoi11:9732298@ds115752.mlab.com:15752/image')
 
 
 
-// function returns a Promise with request data from Imgur 
+// function returns a Promise with data Requested from Imgur 
 function Img (search) {
 return new Promise ( (resolve,reject) => {
     
@@ -42,6 +42,8 @@ var options = {
     
    // function callback is an argument of request 
 function callback(err, response, body) {
+    
+    if (err) throw (err)
   if (!err && response.statusCode == 200) {
     body = body.data.filter(image => {
       if (!image.is_album) {
