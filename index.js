@@ -35,7 +35,9 @@ var options = {
       url: 'https://api.imgur.com/3/gallery/search/?q='+search,
       headers: { Authorization: 'Client-ID 4ad94661cf8ad99' },
       json: true,
-    };
+    }
+    
+    console.log('url '+options.url);
     
    // function callback is an argument of request 
 function callback(err, response, body) {
