@@ -45,7 +45,6 @@ function callback(err, response, body) {
   if (!err && response.statusCode == 200) {
     body = body.data.filter(image => {
       if (!image.is_album) {
-          console.log('ssssss')
         return image;
       }
     }).map(image => {
@@ -73,7 +72,7 @@ app.get('/', function(req, res) {
 
 app.get('/search/:q', function(req, res) {
     var query = req.params.q;
-    
+    console.log('type of '+ Img(query))
         Img(query).then(ans=>{
             
              // a queryinfo is a model of Mongoose ~ a document of MongoDb
