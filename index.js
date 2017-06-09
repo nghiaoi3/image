@@ -73,7 +73,7 @@ app.get('/', function(req, res) {
 app.get('/search/:q', function(req, res) {
     var query = req.params.q;
     console.log('type of '+ Img(query))
-        Img(query).then(ans=>{
+        Img('dog').then(ans=>{
             
              // a queryinfo is a model of Mongoose ~ a document of MongoDb
     var queryinfo = new Model({
