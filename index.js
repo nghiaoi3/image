@@ -49,7 +49,7 @@ function callback(err, response, body) {
 //options of request
 var options = {
     
-      url: 'https://api.imgur.com/3/gallery/search/?q='+search,
+      url: 'https://api.imgur.com/3/gallery/search/?q=dog',
       headers: { Authorization: 'Client-ID 4ad94661cf8ad99' },
       json: true,
     }
