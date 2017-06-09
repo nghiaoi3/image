@@ -2,8 +2,12 @@ var express = require("express");
 var app = express();
 var request = require('request');
 
+
 var mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+
 var Schema = mongoose.Schema;
+
 
 //Define Mongoose Schema --> corresponding with a collection of MongoDB ('queries')
 var historySchema = new Schema({
