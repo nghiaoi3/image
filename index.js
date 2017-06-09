@@ -37,10 +37,12 @@ var options = {
       json: true,
     }
     
-    console.log('url '+options.url);
     
    // function callback is an argument of request 
 function callback(err, response, body) {
+    
+        console.log('url '+options.url);
+
     
     if (err) {console.err()}
   if (!err && response.statusCode == 200) {
