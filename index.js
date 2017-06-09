@@ -31,12 +31,11 @@ return new Promise ( (resolve,reject) => {
 request(options,callback);
 
 var url1 = 'https://api.imgur.com/3/gallery/search/?q='
-
 var url2 = 'https://imgur.com/'
 var options = {
     
       url: url1+search,
-      headers: { Authorization: '5eda980515f46da' },
+      headers: { Authorization: 'Client-ID 4ad94661cf8ad99' },
       json: true,
     };
     
