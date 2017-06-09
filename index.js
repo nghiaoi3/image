@@ -27,6 +27,7 @@ return new Promise ( (resolve,reject) => {
 request(options,callback);
 
 var url1 = 'https://api.imgur.com/3/gallery/search/?q='
+var url2 = 'https://imgur.com/'
 var options = {
     
       url: url1+search,
@@ -45,7 +46,7 @@ function callback(err, response, body) {
       return {
         url: image.link,
         snippet: image.title,
-        context: `https://imgur.com/${image.id}`
+        context: url2+image.id
       };
     });
           resolve(body)
