@@ -31,6 +31,7 @@ return new Promise ( (resolve,reject) => {
 request(options,callback);
 
 var url1 = 'https://api.imgur.com/3/gallery/search/?q='
+
 var url2 = 'https://imgur.com/'
 var options = {
     
@@ -44,6 +45,7 @@ function callback(err, response, body) {
   if (!err && response.statusCode == 200) {
     body = body.data.filter(image => {
       if (!image.is_album) {
+          console.log('ssssss')
         return image;
       }
     }).map(image => {
