@@ -20,11 +20,16 @@ mongoose.connect('mongodb://nghiaoi11:9732298@ds115752.mlab.com:15752/image')
 
 
 
-// function returns a Promise with image data from Imgur 
+// function returns a Promise with request data from Imgur 
 function Img (search) {
 return new Promise ( (resolve,reject) => {
+    
+request(options,callback);
+
+var url1 = 'https://api.imgur.com/3/gallery/search/?q='
 var options = {
-      url: `https://api.imgur.com/3/gallery/search/?q=${search}`,
+    
+      url: url1+search,
       headers: { Authorization: '5eda980515f46da' },
       json: true,
     };
@@ -48,7 +53,6 @@ function callback(err, response, body) {
   }
 
 }
-request(options,callback);
 
 }
 
