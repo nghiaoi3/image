@@ -42,7 +42,7 @@ var options = {
    // function callback is an argument of request 
 function callback(err, response, body) {
     
-    if (err) throw (err)
+    if (err) {console.err()}
   if (!err && response.statusCode == 200) {
     body = body.data.filter(image => {
       if (!image.is_album) {
