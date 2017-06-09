@@ -30,11 +30,9 @@ return new Promise ( (resolve,reject) => {
     
 request(options,callback);
 
-var url1 = 'https://api.imgur.com/3/gallery/search/?q='
-var url2 = 'https://imgur.com/'
 var options = {
     
-      url: url1+search,
+      url: 'https://api.imgur.com/3/gallery/search/?q='+search,
       headers: { Authorization: 'Client-ID 4ad94661cf8ad99' },
       json: true,
     };
@@ -52,7 +50,7 @@ function callback(err, response, body) {
       return {
         url: image.link,
         snippet: image.title,
-        context: url2+image.id
+        context: 'https://imgur.com/+'+image.id
       };
     });
           resolve(body)
