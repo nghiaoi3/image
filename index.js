@@ -44,7 +44,6 @@ function callback(err, response, body) {
         return image;
       }
       
-      console.log('bd '+body)
     }).map(image => {
       return {
         url: image.link,
@@ -164,7 +163,13 @@ function callback(err, response, body) {
     if (err) {console.err()}
     
   if (!err && response.statusCode == 200) {
-    body = body['photos']['photo'].map(image => {
+    body = body['photos']['photo'].filter(image => {
+        
+        //not get Albums, only images from Imgur 
+      if (image['title'].indexOf(search) > -1)     {
+  return image}
+      
+    }).map(image => {
       return {
         url: image['url_m'],
         title: image['title'],
@@ -180,7 +185,7 @@ function callback(err, response, body) {
 
 //options of request from Flickr
 var options = {
-          url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=84057f4de27df6cf716b4202f1dd2a1b&format=json&nojsoncallback=1&text='+search+'&extras=url_m',
+          url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=84057f4de27df6cf716b4202f1dd2a1b&format=json&nojsoncallback=1&text='+search+'&extras=url_m&media=photos',
       json: true,
     }
     //execute our request
