@@ -153,6 +153,43 @@ request(options,callback);
 
 );
 }
+// function returns a Promise with data Requested from Flickr 
+function Img4 (search) {
+return new Promise ( (resolve,reject) => {
+    
+    
+   // function callback is an argument of request 
+function callback(err, response, body) {
+    
+    if (err) {console.err()}
+    
+  if (!err && response.statusCode == 200) {
+    body = body['photo'].map(image => {
+      return {
+        url: image['url_m'],
+        title: image['title'],
+
+      };
+    });
+          resolve(body);
+
+  }  else
+            reject();
+
+}
+
+//options of request from Flickr
+var options = {
+          url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=84057f4de27df6cf716b4202f1dd2a1b&format=json&nojsoncallback=1&text='+search+'&extras=url_m',
+      json: true,
+    }
+    //execute our request
+request(options,callback);
+
+}
+
+);
+}
 
 
 app.get('/', function(req, res) {
@@ -211,6 +248,23 @@ app.get('/searchbing/:q', function(req, res) {
 });;
 });
 
+
+app.get('/searchflickr/:q', function(req, res) {
+    var query = req.params.q;
+    
+    ///get query from url, also as an argument of Img function
+        Img4(query).then(ans=>{
+
+             // a queryinfo is a model of Mongoose ~ a document of MongoDb
+    var queryinfo = new Model({
+        'query':query,
+        'searchby': 'Flickr'
+    }).save();
+    
+            res.json(ans)}).catch(function () {
+     console.log("Promise Rejected");
+});;
+});
 
 app.get('/lastest', function(req, res) {
     
