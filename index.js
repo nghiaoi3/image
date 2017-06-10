@@ -165,9 +165,8 @@ function callback(err, response, body) {
   if (!err && response.statusCode == 200) {
     body = body['photos']['photo'].filter(image => {
         
-        //not get Albums, only images from Imgur 
-      if (image['title'].indexOf(search) > -1)     {
-  return image}
+      if (image['title'].toLowerCase().indexOf(search) > -1) {
+  return image;}
       
     }).map(image => {
       return {
