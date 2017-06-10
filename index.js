@@ -116,7 +116,7 @@ request(options,callback);
 );
 }
 app.get('/', function(req, res) {
-    res.send('Hello from NGHIA, what images will you search? . <br> <br> Example: Search Images About / Of/ Regarding Vietnam on <a href= https://radiant-chamber-77452.herokuapp.com/search/Vietnam> Imgur </a> or by <a href= https://radiant-chamber-77452.herokuapp.com/searchgoogle/Vietnam> Google</a> <br> <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
+    res.send('Hello from NGHIA, what images will you search? . <br> <br> Example: Search Images About / Of/ Regarding "Vietnam" on <a href= https://radiant-chamber-77452.herokuapp.com/search/Vietnam> Imgur </a> or by <a href= https://radiant-chamber-77452.herokuapp.com/searchgoogle/Vietnam> Google</a> <br> <a href= https://radiant-chamber-77452.herokuapp.com/lastest> The lastest searches </a>  <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
 });
 
 
