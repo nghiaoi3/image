@@ -165,7 +165,7 @@ function callback(err, response, body) {
   if (!err && response.statusCode == 200) {
     body = body['photos']['photo'].filter(image => {
         
-      if (image['title'].toLowerCase().indexOf(search) > -1) {
+      if (image['title'].indexOf(search) > -1) {
   return image;}
       
     }).map(image => {
