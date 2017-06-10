@@ -157,7 +157,7 @@ app.get('/searchgoogle/:q', function(req, res) {
 app.get('/lastest', function(req, res) {
     
     Model.find()
-    .select({_id:0, query:1, time:1})
+    .select({_id:0, query:1, searchby:1, time:1})
     .sort({time:-1})
     .limit(10)
     .then(results=>{
