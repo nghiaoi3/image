@@ -24,8 +24,6 @@ mongoose.connect('mongodb://nghiaoi11:9732298@ds115752.mlab.com:15752/image')
 
 
     
-    
-
 // function returns a Promise with data Requested from Imgur 
 function Img1 (search) {
 return new Promise ( (resolve,reject) => {
@@ -116,7 +114,7 @@ request(options,callback);
 );
 }
 app.get('/', function(req, res) {
-    res.send('Hello from NGHIA, what images will you search? . <br> <br> Example: Search Images About / Of/ Regarding <a href= https://radiant-chamber-77452.herokuapp.com/search/vietnam> Vietnam </a> <br> <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
+    res.send('Hello from NGHIA, what images will you search? . <br> <br> Example: Search Images About / Of/ Regarding Vietnam on <a href= https://radiant-chamber-77452.herokuapp.com/search/Vietnam> Imgur </a> or by <a href= https://radiant-chamber-77452.herokuapp.com/searchgoogle/Vietnam> Google</a> <br> <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
 });
 
 
