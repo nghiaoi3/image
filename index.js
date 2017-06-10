@@ -184,7 +184,7 @@ function callback(err, response, body) {
 
 //options of request from Flickr
 var options = {
-          url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=84057f4de27df6cf716b4202f1dd2a1b&format=json&nojsoncallback=1&text='+search+'&extras=url_m&media=photos',
+          url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=84057f4de27df6cf716b4202f1dd2a1b&format=json&nojsoncallback=1&text='+search+'&media=photos',
       json: true,
     }
     //execute our request
@@ -197,7 +197,7 @@ request(options,callback);
 
 
 app.get('/', function(req, res) {
-    res.send('Hello from NGHIA, what images will you search? . <br> <br> Example: Search Images About / Of/ Regarding "Vietnam" on <a href= https://radiant-chamber-77452.herokuapp.com/search/Vietnam> Imgur </a> or by <a href= https://radiant-chamber-77452.herokuapp.com/searchgoogle/Vietnam> Google</a> <br> <a href= https://radiant-chamber-77452.herokuapp.com/lastest> The lastest searches </a>  <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
+    res.send('Hello from NGHIA, what images will you search? . <br> <br> Example: Search Images About / Of/ Regarding "Vietnam" on <a href= https://radiant-chamber-77452.herokuapp.com/search/Vietnam> Imgur </a> , by <a href= https://radiant-chamber-77452.herokuapp.com/searchgoogle/Vietnam> Google</a>, by <a href= https://radiant-chamber-77452.herokuapp.com/searchbing/Vietnam> Bing</a>, or  by <a href= https://radiant-chamber-77452.herokuapp.com/searchflickr/Vietnam> Flickr</a><br> <a href= https://radiant-chamber-77452.herokuapp.com/lastest> The lastest searches </a>  <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
 });
 
 
