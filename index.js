@@ -35,8 +35,11 @@ return new Promise ( (resolve,reject) => {
 function callback(err, response, body) {
     
     if (err) {console.err()}
+    
   if (!err && response.statusCode == 200) {
     body = body.data.filter(image => {
+        
+        //not get Albums, only images from Imgur 
       if (!image.is_album) {
         return image;
       }
@@ -56,15 +59,14 @@ function callback(err, response, body) {
 
 }
 
-//options of request
+//options of request from Imgur
 var options = {
     
       url: 'https://api.imgur.com/3/gallery/search/?q='+search,
       headers: { Authorization: 'Client-ID 4ad94661cf8ad99' },
       json: true,
     }
-    
-    console.log('url '+options.url)
+    //execute our request
 request(options,callback);
 
 }
@@ -72,6 +74,47 @@ request(options,callback);
 );
 }
 
+
+
+
+// function returns a Promise with data Requested from Google 
+function Img (search) {
+return new Promise ( (resolve,reject) => {
+    
+    
+   // function callback is an argument of request 
+function callback(err, response, body) {
+    
+    if (err) {console.err()}
+    
+  if (!err && response.statusCode == 200) {
+    body = body['items'].map(image => {
+      return {
+        url: image['link'],
+        snippet: image['snippet'],
+        context: image['image']['contextLink'],
+        thumbnail: image['image']['thumbnailLink']
+      };
+    });
+          resolve(body);
+
+  }  else
+            reject();
+
+}
+
+//options of request from GOOGLE
+var options = {
+          url: 'https://www.googleapis.com/customsearch/v1?key=AIzaSyATAce15nCwO5jN9CWpVvBxulb-hW6OyS0&cx=006811343498659658024:gy0ixlper_o&q='+search+'&searchType=image',
+      json: true,
+    }
+    //execute our request
+request(options,callback);
+
+}
+
+);
+}
 app.get('/', function(req, res) {
     res.send('Hello from NGHIA, what images will you search? . <br> <br> Example: Search Images About / Of/ Regarding <a href= https://radiant-chamber-77452.herokuapp.com/search/vietnam> Vietnam </a> <br> <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
 });
@@ -79,7 +122,8 @@ app.get('/', function(req, res) {
 
 app.get('/search/:q', function(req, res) {
     var query = req.params.q;
-    console.log('type of '+ Img(query))
+    
+    ///get query from url, also as an argument of Img function
         Img(query).then(ans=>{
 
              // a queryinfo is a model of Mongoose ~ a document of MongoDb
@@ -92,7 +136,21 @@ app.get('/search/:q', function(req, res) {
 });;
 });
 
+app.get('/searchgoogle/:q', function(req, res) {
+    var query = req.params.q;
+    
+    ///get query from url, also as an argument of Img function
+        Img(query).then(ans=>{
 
+             // a queryinfo is a model of Mongoose ~ a document of MongoDb
+    var queryinfo = new Model({
+        'query':query,
+    }).save();
+    
+            res.json(ans)}).catch(function () {
+     console.log("Promise Rejected");
+});;
+});
 
 app.get('/lastest', function(req, res) {
     
