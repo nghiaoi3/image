@@ -23,6 +23,14 @@ var Model = mongoose.model('Model',historySchema)
 mongoose.connect('mongodb://nghiaoi11:9732298@ds115752.mlab.com:15752/image')
 
 
+    
+    
+
+// function returns a Promise with data Requested from Imgur 
+function Img (search) {
+return new Promise ( (resolve,reject) => {
+    
+    
    // function callback is an argument of request 
 function callback(err, response, body) {
     
@@ -39,7 +47,7 @@ function callback(err, response, body) {
         context: 'https://imgur.com/+'+image.id
       };
     });
-          resolve(body)
+          resolve(body);
 
   }  else
             reject();
@@ -49,16 +57,11 @@ function callback(err, response, body) {
 //options of request
 var options = {
     
-      url: 'https://api.imgur.com/3/gallery/search/?q=dog',
+      url: 'https://api.imgur.com/3/gallery/search/?q='+search,
       headers: { Authorization: 'Client-ID 4ad94661cf8ad99' },
       json: true,
     }
     
-    
-
-// function returns a Promise with data Requested from Imgur 
-function Img (search) {
-return new Promise ( (resolve,reject) => {
     console.log('url '+options.url)
 request(options,callback);
 
