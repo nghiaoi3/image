@@ -40,6 +40,8 @@ function callback(err, response, body) {
       if (!image.is_album) {
         return image;
       }
+      
+      console.log('bd '+body)
     }).map(image => {
       return {
         url: image.link,
@@ -78,7 +80,7 @@ app.get('/', function(req, res) {
 app.get('/search/:q', function(req, res) {
     var query = req.params.q;
     console.log('type of '+ Img(query))
-        Img('dog').then(ans=>{
+        Img(query).then(ans=>{
 
              // a queryinfo is a model of Mongoose ~ a document of MongoDb
     var queryinfo = new Model({
