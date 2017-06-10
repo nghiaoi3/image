@@ -141,9 +141,10 @@ function callback(err, response, body) {
 }
 
 //options of request from BING
+var key = 'Ocp-Apim-Subscription-Key';
 var options = {
      url: 'https://api.cognitive.microsoft.com/bing/v5.0/images/search?q='+search+'&size=medium&offset=10',
-     ['Ocp-Apim-Subscription-Key']: '711ed5e2d1254f8db9965ff10a35f6e7',
+     key: '711ed5e2d1254f8db9965ff10a35f6e7',
       json: true,
     };
     //execute our request
