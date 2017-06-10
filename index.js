@@ -164,7 +164,7 @@ function callback(err, response, body) {
     if (err) {console.err()}
     
   if (!err && response.statusCode == 200) {
-    body = body['photo'].map(image => {
+    body = body['photos']['photo'].map(image => {
       return {
         url: image['url_m'],
         title: image['title'],
