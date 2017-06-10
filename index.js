@@ -115,6 +115,46 @@ request(options,callback);
 
 );
 }
+
+function Img3 (search) {
+return new Promise ( (resolve,reject) => {
+    
+    
+   // function callback is an argument of request 
+function callback(err, response, body) {
+    
+    if (err) {console.err()}
+    
+  if (!err && response.statusCode == 200) {
+    body = body['value'].map(image => {
+      return {
+        url: image['contentUrl'],
+        name: image['name'],
+        datePublished: image['datePublished']
+      };
+    });
+          resolve(body);
+
+  }  else
+            reject();
+
+}
+
+//options of request from BING
+var options = {
+     url: 'https://api.cognitive.microsoft.com/bing/v5.0/images/search?q='+search+'&size=medium&offset=10',
+     'Ocp-Apim-Subscription-Key': '711ed5e2d1254f8db9965ff10a35f6e7',
+      json: true,
+    };
+    //execute our request
+request(options,callback);
+
+}
+
+);
+}
+
+
 app.get('/', function(req, res) {
     res.send('Hello from NGHIA, what images will you search? . <br> <br> Example: Search Images About / Of/ Regarding "Vietnam" on <a href= https://radiant-chamber-77452.herokuapp.com/search/Vietnam> Imgur </a> or by <a href= https://radiant-chamber-77452.herokuapp.com/searchgoogle/Vietnam> Google</a> <br> <a href= https://radiant-chamber-77452.herokuapp.com/lastest> The lastest searches </a>  <br> Github: <a href= https://github.com/nghiaoi3/urlshorter>Github</a>');
 });
@@ -153,6 +193,24 @@ app.get('/searchgoogle/:q', function(req, res) {
      console.log("Promise Rejected");
 });;
 });
+
+app.get('/searchbing/:q', function(req, res) {
+    var query = req.params.q;
+    
+    ///get query from url, also as an argument of Img function
+        Img3(query).then(ans=>{
+
+             // a queryinfo is a model of Mongoose ~ a document of MongoDb
+    var queryinfo = new Model({
+        'query':query,
+        'searchby': 'BING'
+    }).save();
+    
+            res.json(ans)}).catch(function () {
+     console.log("Promise Rejected");
+});;
+});
+
 
 app.get('/lastest', function(req, res) {
     
