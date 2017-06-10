@@ -12,7 +12,9 @@ var Schema = mongoose.Schema;
 //Define Mongoose Schema --> corresponding with a collection of MongoDB ('queries')
 var historySchema = new Schema({
 	query: String,
+	searchby: String,
 	time: {type: Date, default:Date.now}
+	
 },{
     collection:'queries'
 });
@@ -127,6 +129,7 @@ app.get('/search/:q', function(req, res) {
              // a queryinfo is a model of Mongoose ~ a document of MongoDb
     var queryinfo = new Model({
         'query':query,
+        'searchby': 'IMGUR'
     }).save();
     
             res.json(ans)}).catch(function () {
@@ -143,6 +146,7 @@ app.get('/searchgoogle/:q', function(req, res) {
              // a queryinfo is a model of Mongoose ~ a document of MongoDb
     var queryinfo = new Model({
         'query':query,
+        'searchby': 'GOOGLE'
     }).save();
     
             res.json(ans)}).catch(function () {
