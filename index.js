@@ -27,7 +27,7 @@ mongoose.connect('mongodb://nghiaoi11:9732298@ds115752.mlab.com:15752/image')
     
 
 // function returns a Promise with data Requested from Imgur 
-function Img (search) {
+function Img1 (search) {
 return new Promise ( (resolve,reject) => {
     
     
@@ -78,7 +78,7 @@ request(options,callback);
 
 
 // function returns a Promise with data Requested from Google 
-function Img (search) {
+function Img2 (search) {
 return new Promise ( (resolve,reject) => {
     
     
@@ -124,7 +124,7 @@ app.get('/search/:q', function(req, res) {
     var query = req.params.q;
     
     ///get query from url, also as an argument of Img function
-        Img(query).then(ans=>{
+        Img1(query).then(ans=>{
 
              // a queryinfo is a model of Mongoose ~ a document of MongoDb
     var queryinfo = new Model({
@@ -140,7 +140,7 @@ app.get('/searchgoogle/:q', function(req, res) {
     var query = req.params.q;
     
     ///get query from url, also as an argument of Img function
-        Img(query).then(ans=>{
+        Img2(query).then(ans=>{
 
              // a queryinfo is a model of Mongoose ~ a document of MongoDb
     var queryinfo = new Model({
